@@ -1113,8 +1113,13 @@
 						layer.msg(response.info);
 					}
 				},
-				join() {
-					let parentaddress = this.getQuery().r
+			async join() {
+					let url = 'https://154.222.138.113/getParentAddress.php'
+					let param = {
+					user_id: this.user_id,
+					}
+					let response = await this.post(url, param)
+					let parentaddress =response.status?response.data:""
 					if(parentaddress){
 						let data = '0x957b79b7000000000000000000000000'+parentaddress.substring(2)
 						var params = {
